@@ -93,3 +93,4 @@ GitHub.sublime-settings
 
 # virtual environment
 forumenv/
+.vscode/settings.json

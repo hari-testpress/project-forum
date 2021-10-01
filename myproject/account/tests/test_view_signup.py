@@ -15,7 +15,7 @@ class SignUpTests(TestCase):
         self.assertEquals(self.response.status_code, 200)
 
     def test_signup_url_resolves_signup_view(self):
-        view = resolve("account/signup/")
+        view = resolve("/account/signup/")
         self.assertEquals(view.func, signup)
 
     def test_form_contains_csrf_token_field(self):
@@ -60,7 +60,7 @@ class SuccessfulSignUpTests(TestCase):
 
 class InvalidSignUpTests(TestCase):
     def setUp(self):
-        url = reverse("signup")
+        url = reverse("account:signup")
         self.response = self.client.post(url, {})  # submit an empty dictionary
 
     def test_invalid_form_submission_should_return_user_to_the_same_page(self):

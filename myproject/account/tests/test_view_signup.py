@@ -25,7 +25,7 @@ class SignUpTests(TestCase):
         form = self.response.context.get("form")
         self.assertIsInstance(form, SignUpForm)
 
-    def test_signup_form_contains_five_inputs(self):
+    def test_signup_form_contains_five_input_fields(self):
         self.assertContains(self.response, "<input", 5)
         self.assertContains(self.response, 'type="text"', 1)
         self.assertContains(self.response, 'type="email"', 1)
@@ -63,7 +63,7 @@ class InvalidSignUpTests(TestCase):
         url = reverse("signup")
         self.response = self.client.post(url, {})  # submit an empty dictionary
 
-    def test_invalid_form_submission_should_return_to_the_same_page(self):
+    def test_invalid_form_submission_should_return_user_to_the_same_page(self):
         self.assertEquals(self.response.status_code, 200)
 
     def test_form_contains_errors_for_invalid_inputs_after_the_invalid_submission(

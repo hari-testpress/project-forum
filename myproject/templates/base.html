@@ -19,6 +19,8 @@
           <a href="#" class="btn btn-outline-secondary">Log in</a>
           <a href="{% url 'account:signup' %}" class="btn btn-primary ml-2">Sign up</a>
         </form>
+        {% else %}
+        <a href="{% url 'account:logout' %}" class="btn btn-outline-secondary">Logout</a>
         {% endif %}
     </nav>
     <div class="container">

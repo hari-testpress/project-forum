@@ -12,6 +12,13 @@ class Board(models.Model):
     def get_posts_count(self):
         return Post.objects.filter(topic__board=self).count()
 
+    def get_last_post(self):
+        return (
+            Post.objects.filter(topic__board=self)
+            .order_by("-created_at")
+            .last()
+        )
+
 
 class Topic(models.Model):
     subject = models.CharField(max_length=255)

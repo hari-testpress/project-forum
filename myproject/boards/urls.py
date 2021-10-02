@@ -12,7 +12,7 @@ urlpatterns = [
         name="topic_posts",
     ),
     path(
-        "<int:pk>/topics/<int:topic_pk>/reply",
+        "<int:pk>/topics/<int:topic_pk>/reply/",
         views.reply_topic,
         name="reply_topic",
     ),

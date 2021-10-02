@@ -29,6 +29,7 @@ class Topic(models.Model):
     starter = models.ForeignKey(
         User, related_name="topics", on_delete=models.CASCADE
     )
+    views = models.PositiveIntegerField(default=0)
 
 
 class Post(models.Model):

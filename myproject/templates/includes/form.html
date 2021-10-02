@@ -12,6 +12,8 @@
             {{ error }}
           </div>
         {% endfor %}
+      {% else %}
+        {% render_field field class="form-control is-valid" %}
       {% endif %}
     {% else %}
       {% render_field field class="form-control" %}

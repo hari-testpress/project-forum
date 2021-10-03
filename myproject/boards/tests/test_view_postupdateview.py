@@ -40,7 +40,7 @@ class PostUpdateViewTestCase(TestCase):
 
 class LoginRequiredPostUpdateViewTests(PostUpdateViewTestCase):
     def test_if_only_logged_in_users_can_edit_the_posts(self):
-        login_url = reverse("login")
+        login_url = reverse("account:login")
         response = self.client.get(self.url)
         self.assertRedirects(
             response,
@@ -101,7 +101,7 @@ class SuccessfulPostUpdateViewTests(PostUpdateViewTestCase):
 
     def test_valid_from_submission_should_redirect_the_user(self):
         topic_posts_url = reverse(
-            "topic_posts",
+            "board:topic_posts",
             kwargs={"pk": self.board.pk, "topic_pk": self.topic.pk},
         )
         self.assertRedirects(self.response, topic_posts_url)

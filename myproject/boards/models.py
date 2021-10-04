@@ -32,14 +32,15 @@ class Topic(models.Model):
         return self.subject
 
     def get_page_count(self):
-        count = self.posts.count()
-        pages = count / 2
+        posts_per_page = 2
+        pages = self.posts.count() / posts_per_page
         return math.ceil(pages)
 
     def has_many_pages(self, count=None):
+        maximum_visible_page = 6
         if count is None:
             count = self.get_page_count()
-        return count > 6
+        return count > maximum_visible_page
 
     def get_page_range(self):
         count = self.get_page_count()

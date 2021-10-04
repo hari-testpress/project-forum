@@ -6,4 +6,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.index, name="index"),
     path("boards/", include("boards.urls", namespace="board")),
+    path("account/", include("account.urls", namespace="account")),
 ]

@@ -141,4 +141,6 @@ LOGOUT_REDIRECT_URL = "index"
 LOGIN_REDIRECT_URL = "index"
 LOGIN_URL = "account:login"
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+
 django_heroku.settings(locals())

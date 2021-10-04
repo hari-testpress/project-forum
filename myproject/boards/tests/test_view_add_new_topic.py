@@ -1,6 +1,7 @@
 from django.urls import reverse, resolve
 from django.test import TestCase
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 from ..views import add_new_topic
 from ..models import Board, Topic, Post
@@ -13,6 +14,7 @@ class AddNewTopicTests(TestCase):
         User.objects.create_user(
             username="john", email="john@doe.com", password="123"
         )
+        self.client.login(username="john", password="123")
 
     def test_new_topic_view_should_return_200_for_the_exist_board(self):
         url = reverse("board:add_new_topic", kwargs={"pk": 1})
@@ -75,3 +77,17 @@ class AddNewTopicTests(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertFalse(Topic.objects.exists())
         self.assertFalse(Post.objects.exists())
+
+
+class LoginRequiredNewTopicTests(TestCase):
+    def setUp(self):
+        Board.objects.create(name="Django", description="Django board.")
+        self.url = reverse("board:add_new_topic", kwargs={"pk": 1})
+        self.response = self.client.get(self.url)
+
+    def test_should_redirect_anonymous_user_to_the_login_page(self):
+        login_url = reverse("account:login")
+        self.assertRedirects(
+            self.response,
+            "{login_url}?next={url}".format(login_url=login_url, url=self.url),
+        )

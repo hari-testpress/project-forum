@@ -20,17 +20,17 @@
         <th>Starter</th>
         <th>Replies</th>
         <th>Views</th>
-        <th>Last Update</th>
+        <th>Created</th>
       </tr>
     </thead>
     <tbody>
-      {% for topic in board.topics.all %}
+      {% for topic in topics %}
         <tr>
           <td><a href="{% url 'board:topic_posts' board.pk topic.pk %}">{{ topic.subject }}</a></td>
           <td>{{ topic.starter.username }}</td>
+          <td>{{topic.replies}}</td>
           <td>0</td>
-          <td>0</td>
-          <td>{{ topic.last_updated }}</td>
+          <td>{{ topic.created_at }}</td>
         </tr>
       {% endfor %}
     </tbody>

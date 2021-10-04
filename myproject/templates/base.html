@@ -22,7 +22,7 @@
                   {{ user.username }}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
-                  <a class="dropdown-item" href="#">My account</a>
+                  <a class="dropdown-item" href="{% url 'account:my_account' %}">My account</a>
                   <a class="dropdown-item" href="{% url 'account:password_change' %}">Change password</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="{% url 'account:logout' %}">Log out</a>
@@ -48,5 +48,6 @@
   <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
   <script src="{% static 'js/popper.min.js' %}"></script>
   <script src="{% static 'js/bootstrap.min.js' %}"></script>
-  </body>
+  {% block javascript %}{% endblock %} 
+</body>
 </html>
